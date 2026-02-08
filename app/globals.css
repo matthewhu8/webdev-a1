@@ -40,3 +40,15 @@ a {
     color-scheme: dark;
   }
 }
+
+.wd-main-content-offset {
+  margin-left: 110px;
+}
+
+/* Course Navigation Active State */
+.list-group-item.active {
+  background-color: white !important;
+  color: black !important;
+  border-color: white !important;
+  border-left: 3px solid black !important;
+}

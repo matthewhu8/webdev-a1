@@ -1,0 +1,37 @@
+"use client";
+import { Nav, Card, Button } from "react-bootstrap";
+
+export default function BootstrapNavigation() {
+    return (
+        <div id="wd-css-navigating-with-tabs">
+            <h2>Tabs</h2>
+            <Nav variant="tabs" defaultActiveKey="/home">
+                <Nav.Item>
+                    <Nav.Link eventKey="link-1">Active</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="link-2">Link</Nav.Link>
+                </Nav.Item>
+                <Nav.Item>
+                    <Nav.Link eventKey="disabled" disabled>
+                        Disabled
+                    </Nav.Link>
+                </Nav.Item>
+            </Nav>
+            <hr />
+            <h2>Cards</h2>
+            <div id="wd-css-navigating-with-cards">
+                <Card style={{ width: "18rem" }}>
+                    <Card.Img variant="top" src="/images/stacked.jpg" />
+                    <Card.Body>
+                        <Card.Title>Stacking Starship</Card.Title>
+                        <Card.Text>
+                            Stacking the most powerful rocket in history. Mars or bust!
+                        </Card.Text>
+                        <Button variant="primary">Boldly Go</Button>
+                    </Card.Body>
+                </Card>
+            </div>
+        </div>
+    );
+}
