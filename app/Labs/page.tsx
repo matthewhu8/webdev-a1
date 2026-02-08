@@ -1,17 +1,28 @@
 import Link from "next/link";
+import TOC from "./TOC";
 
 export default function Labs() {
     return (
-        <div>
+        <div id="wd-labs">
+            <TOC />
             <h1>Labs</h1>
-            <p>Student Name: Matthew Hu</p>
-            <p>Section: 01</p>
+            <p id="wd-name">Student Name: Matthew Hu</p>
+            <p id="wd-section">Section: 01</p>
             <ul>
                 <li>
-                    <Link href="/Labs/lab1">Lab 1</Link>
+                    <Link href="/Labs/lab1" id="wd-lab1-link">Lab 1</Link>
+                </li>
+                <li>
+                    <Link href="/Labs/lab2" id="wd-lab2-link">Lab 2</Link>
                 </li>
             </ul>
-            <Link href="/">Back to Landing Page</Link>
+            <Link href="https://github.com/matthewhu8/webdev-a1-matthewhu" id="wd-github" target="_blank">
+                GitHub Repository
+            </Link>
+            <br />
+            <Link href="/kambaz" id="wd-kambaz-app-link">
+                Kambaz Application
+            </Link>
         </div>
     );
 }
