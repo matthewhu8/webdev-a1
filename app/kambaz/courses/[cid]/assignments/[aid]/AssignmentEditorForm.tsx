@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { Form, Button } from "react-bootstrap";
-import { useParams } from "next/navigation";
+import * as db from "../../../../database";
 
 export default function AssignmentEditorForm({
     cid,
@@ -10,22 +10,24 @@ export default function AssignmentEditorForm({
     cid: string;
     aid: string;
 }) {
+    const assignments = db.assignments;
+    const assignment = assignments.find((a: any) => a._id === aid);
     return (
         <div id="wd-assignments-editor">
             <Form>
                 <Form.Group className="mb-3" controlId="wd-name">
                     <Form.Label>Assignment Name</Form.Label>
-                    <Form.Control type="text" defaultValue="A1 - ENV + HTML" />
+                    <Form.Control type="text" defaultValue={assignment?.title || ""} />
                 </Form.Group>
                 <Form.Group className="mb-3" controlId="wd-description">
-                    <Form.Control as="textarea" rows={3} defaultValue="The assignment is available online..." />
+                    <Form.Control as="textarea" rows={3} defaultValue={assignment?.description || ""} />
                 </Form.Group>
                 <div className="row mb-3">
                     <div className="col-md-4 text-end">
                         <Form.Label htmlFor="wd-points">Points</Form.Label>
                     </div>
                     <div className="col-md-8">
-                        <Form.Control id="wd-points" type="number" defaultValue={100} />
+                        <Form.Control id="wd-points" type="number" defaultValue={assignment?.points || 100} />
                     </div>
                 </div>
                 <div className="row mb-3">
@@ -75,16 +77,16 @@ export default function AssignmentEditorForm({
                         <Form.Control type="text" id="wd-assign-to" defaultValue="Everyone" className="mb-3" />
 
                         <Form.Label className="fw-bold" htmlFor="wd-due-date">Due</Form.Label>
-                        <Form.Control type="date" id="wd-due-date" defaultValue="2024-05-13" className="mb-3" />
+                        <Form.Control type="date" id="wd-due-date" defaultValue={assignment?.dueDate || "2024-05-13"} className="mb-3" />
 
                         <div className="row">
                             <div className="col-md-6">
                                 <Form.Label className="fw-bold" htmlFor="wd-available-from">Available from</Form.Label>
-                                <Form.Control type="date" id="wd-available-from" defaultValue="2024-05-06" />
+                                <Form.Control type="date" id="wd-available-from" defaultValue={assignment?.availableDate || "2024-05-06"} />
                             </div>
                             <div className="col-md-6">
                                 <Form.Label className="fw-bold" htmlFor="wd-available-until">Until</Form.Label>
-                                <Form.Control type="date" id="wd-available-until" defaultValue="2024-05-20" />
+                                <Form.Control type="date" id="wd-available-until" defaultValue={assignment?.availableUntilDate || "2024-05-20"} />
                             </div>
                         </div>
                     </div>

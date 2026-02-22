@@ -1,13 +1,17 @@
+"use client"
+import { useParams } from "next/navigation";
 import { BsGripVertical, BsPlus } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
 import { FaMagnifyingGlass } from "react-icons/fa6";
 import LessonControlButtons from "../modules/LessonControlButtons";
-import { FaCheckCircle, FaCircle } from "react-icons/fa";
 import Link from "next/link";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { MdOutlineAssignment } from "react-icons/md";
+import * as db from "../../../database";
 
 export default function Assignments() {
+    const { cid } = useParams();
+    const assignments = db.assignments;
     return (
         <div id="wd-assignments">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -34,78 +38,34 @@ export default function Assignments() {
                         </span>
                     </div>
                     <ul className="wd-assignment-list-group list-group rounded-0">
-                        <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-                            <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <BsGripVertical className="me-2 fs-3 text-secondary" />
-                                </div>
-                                <div className="col-auto">
-                                    <MdOutlineAssignment className="fs-3 text-success" />
-                                </div>
-                                <div className="col flex-grow-1">
-                                    <Link className="wd-assignment-link fw-bold text-black text-decoration-none"
-                                        href="/kambaz/courses/1234/assignments/123">
-                                        A1 - ENV + HTML
-                                    </Link>
-                                    <br />
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <strong> Not available until</strong> May 6 at 12:00am |
-                                    <br />
-                                    <strong>Due</strong> May 13 at 11:59pm | 100 pts
-                                </div>
-                                <div className="col-auto">
-                                    <LessonControlButtons />
-                                </div>
-                            </div>
-                        </li>
-                        <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-                            <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <BsGripVertical className="me-2 fs-3 text-secondary" />
-                                </div>
-                                <div className="col-auto">
-                                    <MdOutlineAssignment className="fs-3 text-success" />
-                                </div>
-                                <div className="col flex-grow-1">
-                                    <Link className="wd-assignment-link fw-bold text-black text-decoration-none"
-                                        href="/kambaz/courses/1234/assignments/124">
-                                        A2 - CSS + BOOTSTRAP
-                                    </Link>
-                                    <br />
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <strong> Not available until</strong> May 13 at 12:00am |
-                                    <br />
-                                    <strong>Due</strong> May 20 at 11:59pm | 100 pts
-                                </div>
-                                <div className="col-auto">
-                                    <LessonControlButtons />
-                                </div>
-                            </div>
-                        </li>
-                        <li className="wd-assignment-list-item list-group-item p-3 ps-1">
-                            <div className="row align-items-center">
-                                <div className="col-auto">
-                                    <BsGripVertical className="me-2 fs-3 text-secondary" />
-                                </div>
-                                <div className="col-auto">
-                                    <MdOutlineAssignment className="fs-3 text-success" />
-                                </div>
-                                <div className="col flex-grow-1">
-                                    <Link className="wd-assignment-link fw-bold text-black text-decoration-none"
-                                        href="/kambaz/courses/1234/assignments/125">
-                                        A3 - JS + REACT
-                                    </Link>
-                                    <br />
-                                    <span className="text-danger">Multiple Modules</span> |
-                                    <strong> Not available until</strong> May 20 at 12:00am |
-                                    <br />
-                                    <strong>Due</strong> May 27 at 11:59pm | 100 pts
-                                </div>
-                                <div className="col-auto">
-                                    <LessonControlButtons />
-                                </div>
-                            </div>
-                        </li>
+                        {assignments
+                            .filter((assignment: any) => assignment.course === cid)
+                            .map((assignment: any) => (
+                                <li key={assignment._id} className="wd-assignment-list-item list-group-item p-3 ps-1">
+                                    <div className="row align-items-center">
+                                        <div className="col-auto">
+                                            <BsGripVertical className="me-2 fs-3 text-secondary" />
+                                        </div>
+                                        <div className="col-auto">
+                                            <MdOutlineAssignment className="fs-3 text-success" />
+                                        </div>
+                                        <div className="col flex-grow-1">
+                                            <Link className="wd-assignment-link fw-bold text-black text-decoration-none"
+                                                href={`/kambaz/courses/${cid}/assignments/${assignment._id}`}>
+                                                {assignment.title}
+                                            </Link>
+                                            <br />
+                                            <span className="text-danger">Multiple Modules</span> |
+                                            <strong> Not available until</strong> {assignment.availableDate} |
+                                            <br />
+                                            <strong>Due</strong> {assignment.dueDate} | {assignment.points} pts
+                                        </div>
+                                        <div className="col-auto">
+                                            <LessonControlButtons />
+                                        </div>
+                                    </div>
+                                </li>
+                            ))}
                     </ul>
                 </li>
             </ul>

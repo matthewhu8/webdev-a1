@@ -1,0 +1,72 @@
+[
+    {
+        "_id": "1",
+        "username": "iron_man",
+        "password": "stark123",
+        "firstName": "Tony",
+        "lastName": "Stark",
+        "email": "tony@stark.com",
+        "dob": "1972-05-29",
+        "role": "FACULTY",
+        "loginId": "001234",
+        "section": "S101",
+        "lastActivity": "2026-01-10",
+        "totalActivity": "10:24:35"
+    },
+    {
+        "_id": "2",
+        "username": "dark_knight",
+        "password": "wayne234",
+        "firstName": "Bruce",
+        "lastName": "Wayne",
+        "email": "bruce@wayne.com",
+        "dob": "1982-03-30",
+        "role": "STUDENT",
+        "loginId": "001235",
+        "section": "S101",
+        "lastActivity": "2026-01-09",
+        "totalActivity": "05:10:23"
+    },
+    {
+        "_id": "3",
+        "username": "ring_bearer",
+        "password": "shire345",
+        "firstName": "Frodo",
+        "lastName": "Baggins",
+        "email": "frodo@shire.com",
+        "dob": "1990-09-22",
+        "role": "STUDENT",
+        "loginId": "001236",
+        "section": "S101",
+        "lastActivity": "2026-01-08",
+        "totalActivity": "03:45:12"
+    },
+    {
+        "_id": "4",
+        "username": "the_hobbit",
+        "password": "bagend456",
+        "firstName": "Bilbo",
+        "lastName": "Baggins",
+        "email": "bilbo@shire.com",
+        "dob": "1970-09-22",
+        "role": "TA",
+        "loginId": "001237",
+        "section": "S101",
+        "lastActivity": "2026-01-07",
+        "totalActivity": "08:30:00"
+    },
+    {
+        "_id": "5",
+        "username": "wizard_grey",
+        "password": "gandalf567",
+        "firstName": "Gandalf",
+        "lastName": "Grey",
+        "email": "gandalf@me.com",
+        "dob": "1960-01-01",
+        "role": "FACULTY",
+        "loginId": "001238",
+        "section": "S101",
+        "lastActivity": "2026-01-06",
+        "totalActivity": "12:00:00"
+    }
+]
