@@ -68,12 +68,6 @@
                 "name": "Nozzle Performance",
                 "description": "Understanding nozzle performance and efficiency.",
                 "module": "M103"
-            },
-            {
-                "_id": "L303",
-                "name": "Nozzle Optimization",
-                "description": "Optimizing nozzle design for specific applications.",
-                "module": "M103"
             }
         ]
     },
@@ -94,12 +88,6 @@
                 "name": "Airfoil Design",
                 "description": "Principles of airfoil design and analysis.",
                 "module": "M201"
-            },
-            {
-                "_id": "L403",
-                "name": "Wing Design",
-                "description": "Understanding wing design and performance.",
-                "module": "M201"
             }
         ]
     },
@@ -112,13 +100,13 @@
             {
                 "_id": "L501",
                 "name": "Subsonic Flow",
-                "description": "Understanding subsonic flow and its applications.",
+                "description": "Understanding subsonic flow.",
                 "module": "M202"
             },
             {
                 "_id": "L502",
                 "name": "Supersonic Flow",
-                "description": "Understanding supersonic flow and its applications.",
+                "description": "Understanding supersonic flow.",
                 "module": "M202"
             }
         ]
@@ -131,8 +119,8 @@
         "lessons": [
             {
                 "_id": "L601",
-                "name": "Structural Design",
-                "description": "Principles of spacecraft structural design.",
+                "name": "Structural Design Principles",
+                "description": "Core principles of spacecraft structural design.",
                 "module": "M301"
             },
             {
@@ -140,26 +128,6 @@
                 "name": "Materials Selection",
                 "description": "Selecting materials for spacecraft structures.",
                 "module": "M301"
-            }
-        ]
-    },
-    {
-        "_id": "M401",
-        "name": "Organic Compounds",
-        "description": "Introduction to organic compounds and their properties.",
-        "course": "RS104",
-        "lessons": [
-            {
-                "_id": "L701",
-                "name": "Carbon Chemistry",
-                "description": "Understanding carbon chemistry basics.",
-                "module": "M401"
-            },
-            {
-                "_id": "L702",
-                "name": "Functional Groups",
-                "description": "Overview of functional groups in organic chemistry.",
-                "module": "M401"
             }
         ]
     }
