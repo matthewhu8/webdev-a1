@@ -1,14 +1,23 @@
-import { IoEllipsisVertical } from "react-icons/io5";
+"use client";
+import { useState } from "react";
+import { FaPlus } from "react-icons/fa6";
 import GreenCheckmark from "./GreenCheckmark";
-import { BsPlus } from "react-icons/bs";
+import ModuleEditor from "./ModuleEditor";
+import { Button } from "react-bootstrap";
 
-export default function ModulesControls() {
+export default function ModulesControls(
+    { moduleName, setModuleName, addModule }:
+    { moduleName: string; setModuleName: (title: string) => void; addModule: () => void; }) {
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
     return (
         <div id="wd-modules-controls" className="text-nowrap">
-            <button id="wd-add-module-btn" className="btn btn-lg btn-danger me-1 float-end">
-                <BsPlus className="position-relative me-2" style={{ bottom: "1px" }} />
+            <Button variant="danger" id="wd-add-module-btn" className="me-1 float-end"
+                    onClick={handleShow} >
+                <FaPlus className="position-relative me-2" style={{ bottom: "1px" }} />
                 Module
-            </button>
+            </Button>
             <div className="dropdown d-inline me-1 float-end">
                 <button id="wd-publish-all-btn" className="btn btn-lg btn-secondary dropdown-toggle"
                     type="button" data-bs-toggle="dropdown">
@@ -19,35 +28,27 @@ export default function ModulesControls() {
                     <li>
                         <a id="wd-publish-all-modules-and-items-btn" className="dropdown-item" href="#">
                             <GreenCheckmark />
-                            Publish all modules and items
-                        </a>
-                    </li>
+                            Publish all modules and items</a></li>
                     <li>
                         <a id="wd-publish-modules-only-button" className="dropdown-item" href="#">
                             <GreenCheckmark />
-                            Publish modules only
-                        </a>
-                    </li>
+                            Publish modules only</a></li>
                     <li>
                         <a id="wd-unpublish-all-modules-and-items" className="dropdown-item" href="#">
                             <GreenCheckmark />
-                            Unpublish all modules and items
-                        </a>
-                    </li>
+                            Unpublish all modules and items</a></li>
                     <li>
                         <a id="wd-unpublish-modules-only" className="dropdown-item" href="#">
                             <GreenCheckmark />
-                            Unpublish modules only
-                        </a>
-                    </li>
+                            Unpublish modules only</a></li>
                 </ul>
             </div>
             <button id="wd-view-progress" className="btn btn-lg btn-secondary me-1 float-end">
-                View Progress
-            </button>
+                View Progress</button>
             <button id="wd-collapse-all" className="btn btn-lg btn-secondary me-1 float-end">
-                Collapse All
-            </button>
+                Collapse All</button>
+            <ModuleEditor show={show} handleClose={handleClose} dialogTitle="Add Module"
+                moduleName={moduleName} setModuleName={setModuleName} addModule={addModule} />
         </div>
     );
 }

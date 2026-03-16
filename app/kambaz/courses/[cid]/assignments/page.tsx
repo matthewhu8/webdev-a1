@@ -1,17 +1,41 @@
 "use client"
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import { BsGripVertical, BsPlus } from "react-icons/bs";
 import { IoEllipsisVertical } from "react-icons/io5";
-import { FaMagnifyingGlass } from "react-icons/fa6";
+import { FaMagnifyingGlass, FaTrash } from "react-icons/fa6";
 import LessonControlButtons from "../modules/LessonControlButtons";
 import Link from "next/link";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { MdOutlineAssignment } from "react-icons/md";
-import * as db from "../../../database";
+import { useSelector, useDispatch } from "react-redux";
+import { RootState } from "../../../store";
+import { deleteAssignment } from "../../assignments/reducer";
+import { Modal, Button } from "react-bootstrap";
 
 export default function Assignments() {
     const { cid } = useParams();
-    const assignments = db.assignments;
+    const { assignments } = useSelector((state: RootState) => state.assignmentsReducer);
+    const dispatch = useDispatch();
+    const [showDialog, setShowDialog] = useState(false);
+    const [assignmentToDelete, setAssignmentToDelete] = useState<any>(null);
+
+    const handleDeleteClick = (assignment: any) => {
+        setAssignmentToDelete(assignment);
+        setShowDialog(true);
+    };
+    const handleConfirmDelete = () => {
+        if (assignmentToDelete) {
+            dispatch(deleteAssignment(assignmentToDelete._id));
+        }
+        setShowDialog(false);
+        setAssignmentToDelete(null);
+    };
+    const handleCancelDelete = () => {
+        setShowDialog(false);
+        setAssignmentToDelete(null);
+    };
+
     return (
         <div id="wd-assignments">
             <div className="d-flex justify-content-between align-items-center mb-4">
@@ -22,7 +46,7 @@ export default function Assignments() {
                     <input id="wd-search-assignment" className="form-control border-start-0"
                         placeholder="Search for Assignment" />
                 </div>
-                <AssignmentControlButtons />
+                <AssignmentControlButtons cid={cid as string} />
             </div>
             <ul id="wd-assignment-list" className="list-group rounded-0">
                 <li className="wd-assignment-list-item list-group-item p-0 mb-5 fs-5 border-gray">
@@ -61,6 +85,8 @@ export default function Assignments() {
                                             <strong>Due</strong> {assignment.dueDate} | {assignment.points} pts
                                         </div>
                                         <div className="col-auto">
+                                            <FaTrash className="text-danger me-2 mb-1 cursor-pointer"
+                                                onClick={() => handleDeleteClick(assignment)} />
                                             <LessonControlButtons />
                                         </div>
                                     </div>
@@ -69,6 +95,19 @@ export default function Assignments() {
                     </ul>
                 </li>
             </ul>
+
+            <Modal show={showDialog} onHide={handleCancelDelete}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Confirm Delete</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    Are you sure you want to remove the assignment &quot;{assignmentToDelete?.title}&quot;?
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={handleCancelDelete}>No</Button>
+                    <Button variant="danger" onClick={handleConfirmDelete}>Yes</Button>
+                </Modal.Footer>
+            </Modal>
         </div>
     );
 }

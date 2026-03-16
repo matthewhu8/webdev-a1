@@ -1,10 +1,8 @@
+"use client";
+import { useParams } from "next/navigation";
 import AssignmentEditorForm from "./AssignmentEditorForm";
 
-export default async function AssignmentEditor({
-    params,
-}: {
-    params: Promise<{ cid: string; aid: string }>;
-}) {
-    const { cid, aid } = await params;
-    return <AssignmentEditorForm cid={cid} aid={aid} />;
+export default function AssignmentEditor() {
+    const { cid, aid } = useParams();
+    return <AssignmentEditorForm cid={cid as string} aid={aid as string} />;
 }

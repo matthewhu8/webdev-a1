@@ -18,6 +18,9 @@ export default function Labs() {
                 <li>
                     <Link href="/Labs/lab3" id="wd-lab3-link">Lab 3</Link>
                 </li>
+                <li>
+                    <Link href="/Labs/lab4" id="wd-lab4-link">Lab 4</Link>
+                </li>
             </ul>
             <Link href="https://github.com/matthewhu8/webdev-a1" id="wd-github" target="_blank">
                 GitHub Repository
