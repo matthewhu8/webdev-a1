@@ -28,6 +28,10 @@ export default function TOC() {
                 <NavLink href="/kambaz" as={Link}>
                     Kambaz </NavLink> </NavItem>
             <NavItem>
+                <NavLink href="https://github.com/matthewhu8/webdev-node-rest-server" id="wd-node-server-github">Server GitHub</NavLink></NavItem>
+            <NavItem>
+                <NavLink href="https://webdev-node-rest-server.onrender.com" id="wd-node-server">Node Server</NavLink></NavItem>
+            <NavItem>
                 <NavLink href="https://github.com/matthewhu8/webdev-a1" id="wd-github">My GitHub</NavLink></NavItem>
         </Nav>
     );
