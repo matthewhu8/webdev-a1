@@ -1,10 +1,11 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Form, Button } from "react-bootstrap";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../../../../store";
-import { addAssignment, updateAssignment } from "../../../assignments/reducer";
+import { setAssignments } from "../../../assignments/reducer";
+import * as client from "../../../client";
 
 export default function AssignmentEditorForm({
     cid,
@@ -33,11 +34,15 @@ export default function AssignmentEditorForm({
             : { ...existingAssignment }
     );
 
-    const handleSave = () => {
+    const handleSave = async () => {
         if (isNew) {
-            dispatch(addAssignment(assignment));
+            const newAssignment = await client.createAssignment(cid, assignment);
+            dispatch(setAssignments([...assignments, newAssignment]));
         } else {
-            dispatch(updateAssignment(assignment));
+            await client.updateAssignment(assignment);
+            dispatch(setAssignments(assignments.map((a: any) =>
+              a._id === assignment._id ? assignment : a
+            )));
         }
         router.push(`/kambaz/courses/${cid}/assignments`);
     };
